@@ -15,7 +15,7 @@ from datasets.nerf_synthetic import SubjectLoader
 from lpips import LPIPS
 from radiance_fields.mlp import VanillaNeRFRadianceField
 
-from examples.utils import (
+from utils import (
     NERF_SYNTHETIC_SCENES,
     render_image_with_occgrid,
     set_random_seed,

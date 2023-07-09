@@ -120,6 +120,7 @@ def render_image_with_occgrid(
     print("chunk is :",chunk)
     for i in range(0, num_rays, chunk):
         chunk_rays = namedtuple_map(lambda r: r[i : i + chunk], rays)
+        print({"origins":chunk_rays.origins,"viewdires":chunk_rays.viewdirs})
         print(chunk_rays.origins.shape,chunk_rays.viewdirs.shape)
         ray_indices, t_starts, t_ends = estimator.sampling(
             chunk_rays.origins,

@@ -117,6 +117,7 @@ def render_image_with_occgrid(
         if radiance_field.training
         else test_chunk_size
     )
+    print("chunk is :",chunk)
     for i in range(0, num_rays, chunk):
         chunk_rays = namedtuple_map(lambda r: r[i : i + chunk], rays)
         print(chunk_rays.origins.shape,chunk_rays.viewdirs.shape)

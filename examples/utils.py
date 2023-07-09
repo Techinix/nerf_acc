@@ -119,6 +119,7 @@ def render_image_with_occgrid(
     )
     for i in range(0, num_rays, chunk):
         chunk_rays = namedtuple_map(lambda r: r[i : i + chunk], rays)
+        print(chunk_rays.origins.shape,chunk_rays.viewdirs.shape)
         ray_indices, t_starts, t_ends = estimator.sampling(
             chunk_rays.origins,
             chunk_rays.viewdirs,
@@ -130,6 +131,7 @@ def render_image_with_occgrid(
             cone_angle=cone_angle,
             alpha_thre=alpha_thre,
         )
+        print({"t_starts":len(t_starts),"t_ends":len(t_ends),"ray_indices":len(ray_indices)})
         rgb, opacity, depth, extras = rendering(
             t_starts,
             t_ends,

@@ -95,6 +95,7 @@ estimator = OccGridEstimator(
 
 # setup the radiance field we want to train.
 radiance_field = VanillaNeRFRadianceField().to(device)
+print("model: ",radiance_field)
 optimizer = torch.optim.Adam(radiance_field.parameters(), lr=5e-4)
 scheduler = torch.optim.lr_scheduler.MultiStepLR(
     optimizer,
@@ -133,7 +134,8 @@ for step in range(max_steps + 1):
     render_bkgd = data["color_bkgd"]
     rays = data["rays"]
     pixels = data["pixels"]
-
+    print({"rays":rays,"origins shape":rays.origins.shape,"dirs shape":rays.viewdirs.shape})
+    print({"pixels":pixels,"shape":pixels.shape})
     def occ_eval_fn(x):
         density = radiance_field.query_density(x)
         return density * render_step_size
@@ -174,7 +176,7 @@ for step in range(max_steps + 1):
     optimizer.step()
     scheduler.step()
 
-    if step % 5000 == 0:
+    if step % 10 == 0:
         elapsed_time = time.time() - tic
         loss = F.mse_loss(rgb, pixels)
         psnr = -10.0 * torch.log(loss) / np.log(10.0)

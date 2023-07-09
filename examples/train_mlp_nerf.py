@@ -95,7 +95,7 @@ estimator = OccGridEstimator(
 
 # setup the radiance field we want to train.
 radiance_field = VanillaNeRFRadianceField().to(device)
-print("model: ",radiance_field)
+print({"model":radiance_field})
 optimizer = torch.optim.Adam(radiance_field.parameters(), lr=5e-4)
 scheduler = torch.optim.lr_scheduler.MultiStepLR(
     optimizer,

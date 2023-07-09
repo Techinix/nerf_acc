@@ -185,7 +185,10 @@ class SubjectLoader(torch.utils.data.Dataset):
 
         # generate rays
         rgba = self.images[image_id, y, x] / 255.0  # (num_rays, 4)
+
+        
         c2w = self.camtoworlds[image_id]  # (num_rays, 3, 4)
+        print({"rgba shape": rgba.shape,"c2w shape": c2w.shape})
         camera_dirs = F.pad(
             torch.stack(
                 [
@@ -217,7 +220,7 @@ class SubjectLoader(torch.utils.data.Dataset):
             rgba = torch.reshape(rgba, (self.HEIGHT, self.WIDTH, 4))
 
         rays = Rays(origins=origins, viewdirs=viewdirs)
-
+        print({"at the end rgba shape is ":rgba.shape})
         return {
             "rgba": rgba,  # [h, w, 4] or [num_rays, 4]
             "rays": rays,  # [h, w, 3] or [num_rays, 3]

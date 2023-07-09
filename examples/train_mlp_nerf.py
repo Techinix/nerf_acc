@@ -134,8 +134,6 @@ for step in range(max_steps + 1):
     render_bkgd = data["color_bkgd"]
     rays = data["rays"]
     pixels = data["pixels"]
-    print({"rays":rays,"origins shape":rays.origins.shape,"dirs shape":rays.viewdirs.shape})
-    print({"pixels":pixels,"shape":pixels.shape})
     def occ_eval_fn(x):
         density = radiance_field.query_density(x)
         return density * render_step_size

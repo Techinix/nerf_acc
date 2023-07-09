@@ -188,7 +188,7 @@ class SubjectLoader(torch.utils.data.Dataset):
 
         
         c2w = self.camtoworlds[image_id]  # (num_rays, 3, 4)
-        print({"rgba shape": rgba.shape,"c2w shape": c2w.shape})
+        print({"rgba shape": rgba,"c2w shape": c2w.shape})
         camera_dirs = F.pad(
             torch.stack(
                 [

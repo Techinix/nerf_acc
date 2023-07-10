@@ -5,6 +5,7 @@ Copyright (c) 2022 Ruilong Li, UC Berkeley.
 import argparse
 import pathlib
 import time
+import logging
 
 import imageio
 import numpy as np
@@ -20,6 +21,11 @@ from utils import (
     render_image_with_occgrid,
     set_random_seed,
 )
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(levelname)s:     %(message)s'
+    )
+
 from nerfacc.estimators.occ_grid import OccGridEstimator
 
 device = "cuda:0"
@@ -125,6 +131,7 @@ else:
 # training
 tic = time.time()
 for step in range(max_steps + 1):
+    logging.info(f"Epoch no : {i}...")
     radiance_field.train()
     estimator.train()
 
@@ -159,7 +166,6 @@ for step in range(max_steps + 1):
     )
     if n_rendering_samples == 0:
         continue
-
     if target_sample_batch_size > 0:
         # dynamic batch size for rays to keep sample batch size constant.
         num_rays = len(pixels)

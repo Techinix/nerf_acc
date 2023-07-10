@@ -193,7 +193,7 @@ class SubjectLoader(torch.utils.data.Dataset):
             torch.stack(
                 [
                     (x - self.K[0, 2] + 0.5) / self.K[0, 0],
-                    (y - self.K[1, 2] + ,device=self.imgs.device0.5)
+                    (y - self.K[1, 2] + 0.5)
                     / self.K[1, 1]
                     * (-1.0 if self.OPENGL_CAMERA else 1.0),
                 ],

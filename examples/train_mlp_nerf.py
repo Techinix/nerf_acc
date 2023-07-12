@@ -164,6 +164,7 @@ for step in range(max_steps + 1):
         render_step_size=render_step_size,
         render_bkgd=render_bkgd,
     )
+    print(len(pixels))
     if n_rendering_samples == 0:
         continue
     if target_sample_batch_size > 0:

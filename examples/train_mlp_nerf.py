@@ -131,7 +131,7 @@ else:
 # training
 tic = time.time()
 for step in range(max_steps + 1):
-    logging.info(f"Epoch no : {i}...")
+    logging.info(f"Epoch no : {step}...")
     radiance_field.train()
     estimator.train()
 

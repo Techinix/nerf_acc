@@ -192,7 +192,7 @@ for step in range(max_steps + 1):
             f"n_rendering_samples={n_rendering_samples:d} | num_rays={len(pixels):d} | "
             f"max_depth={depth.max():.3f} | "
         )
-        break
+        
 
     if step > 0 and step % max_steps == 0:
         model_save_path = str(pathlib.Path.cwd() / f"mlp_nerf_{step}")
